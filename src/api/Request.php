@@ -22,6 +22,7 @@ class Request
     public function __construct(Santander $credentials)
     {
         if (! $credentials->getAuthorizationToken()) {
+            echo "VAI AUTENTICAR...<br>";
             $this->auth($credentials);
         }
     }
@@ -38,6 +39,7 @@ class Request
             'client_id' => $credentials->getClientId(),
             'client_secret' => $credentials->getClientSecret()
         ];
+        echo "Iniciando o curl...<br>";
 
         $curl = curl_init();
 
@@ -56,6 +58,7 @@ class Request
         ]);
 
         try {
+            echo 'Vai executar...<br>';
             $response = curl_exec($curl);
             var_dump(['auth' => $response]);
             echo '<br>';
