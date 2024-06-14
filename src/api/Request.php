@@ -30,7 +30,15 @@ class Request
     }
 
     public function auth(Santander $credentials)
-    {       
+    {
+        #verifico se existe o certificado no servidor
+        if(!file_exists($credentials->getCertificate())){
+            throw new Exception("[ERRO] Não localizei o certificado no servidor!");
+        }
+        if(!file_exists($credentials->getCertificateKey())){
+            throw new Exception("[ERRO] Não localizei a chave do certificado no servidor!");
+        }
+        #Inicio a autenticação
         $endpoint = $credentials->getEnvironment()->getApiUrl().'/auth/oauth/v2/token';
         $headers = [
             'Content-Type: application/x-www-form-urlencoded'
