@@ -173,11 +173,6 @@ class Santander
             }
 
             $request = new Request($this);
-            if ($this->debug) {
-                echo '<hr>';
-                var_dump($this->getAuthorizationToken());
-                echo '<hr>';
-            }
             $response = $request->post($this, "{$this->getEnvironment()->getApiUrl()}/collection_bill_management/v2/workspaces/{$this->work_space}/bank_slips", $boleto->toJSON());
 
             // Add fields do not return in response
@@ -187,7 +182,6 @@ class Santander
             $boletoResponse->setStatus(BaseResponse::STATUS_CONFIRMED);
             return $boletoResponse;
         } catch(Exception $e){
-            var_dump(['boletoResponse' => $boletoResponse, 'exception' => $e->getMessage()]);
             return $this->generateErrorResponse($boletoResponse, $e);
         }
     }

@@ -22,9 +22,6 @@ class Request
     public function __construct(Santander $credentials)
     {
         if (! $credentials->getAuthorizationToken()) {
-            echo "<hr>VAI AUTENTICAR...<br>";
-            var_dump($credentials);
-            echo '<hr>';
             $this->auth($credentials);
         }
     }
@@ -71,11 +68,7 @@ class Request
             }
 
             $response = curl_exec($curl);
-            var_dump(['auth' => $response]);
-            echo '<br>';
         } catch (Exception $e) {
-            var_dump(['Exception auth' => $e->getMessage()]);
-            echo '<br>';
             throw new SantanderException($e->getMessage(), 100);
         }
         // Verify error
@@ -107,9 +100,6 @@ class Request
         if (is_array($responseDecode) && isset($responseDecode['error'])) {
             throw new SantanderException($responseDecode['error_description'], 100);
         }
-        echo "<h5>Token</h5>";
-        var_dump(['acess_token' => $responseDecode["access_token"]]);
-        echo '<br>';
 
         $credentials->setAuthorizationToken($responseDecode["access_token"]);
 
