@@ -169,12 +169,14 @@ class Santander
 
         try{
             if ($this->debug) {
-                print $this->authorizationToken;
-                print '<hr>';
                 print $boleto->toJSON();
             }
 
             $request = new Request($this);
+            if ($this->debug) {
+                echo '<rr>';
+                var_dump($this);
+            }
             $response = $request->post($this, "{$this->getEnvironment()->getApiUrl()}/collection_bill_management/v2/workspaces/{$this->work_space}/bank_slips", $boleto->toJSON());
 
             // Add fields do not return in response
