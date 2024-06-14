@@ -22,7 +22,9 @@ class Request
     public function __construct(Santander $credentials)
     {
         if (! $credentials->getAuthorizationToken()) {
-            echo "VAI AUTENTICAR...<br>";
+            echo "<hr>VAI AUTENTICAR...<br>";
+            var_dump($credentials);
+            echo '<hr>';
             $this->auth($credentials);
         }
     }
