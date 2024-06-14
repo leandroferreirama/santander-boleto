@@ -62,10 +62,12 @@ class Request
         try {
             #verifico se existe o certificado no servidor
             if(!file_exists($credentials->getCertificate())){
-                throw new Exception("[ERRO] Não localizei o certificado no servidor!");
+                $json['message'] = "[ERRO] Não localizei o certificado no servidor!";
+                throw new Exception(json_encode($json));
             }
             if(!file_exists($credentials->getCertificateKey())){
-                throw new Exception("[ERRO] Não localizei a chave do certificado no servidor!");
+                $json['message'] = "[ERRO] Não localizei a chave do certificado no servidor!";
+                throw new Exception(json_encode($json));
             }
 
             $response = curl_exec($curl);
