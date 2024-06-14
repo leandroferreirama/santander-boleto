@@ -169,6 +169,8 @@ class Santander
 
         try{
             if ($this->debug) {
+                print $this->authorizationToken;
+                print '<hr>';
                 print $boleto->toJSON();
             }
 
