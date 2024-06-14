@@ -42,7 +42,6 @@ class Request
             'client_id' => $credentials->getClientId(),
             'client_secret' => $credentials->getClientSecret()
         ];
-        echo "Iniciando o curl...<br>";
 
         $curl = curl_init();
 
@@ -61,7 +60,6 @@ class Request
         ]);
 
         try {
-            echo "Validando o certificado...<br>";
             #verifico se existe o certificado no servidor
             if(!file_exists($credentials->getCertificate())){
                 throw new Exception("[ERRO] Não localizei o certificado no servidor!");
@@ -69,7 +67,7 @@ class Request
             if(!file_exists($credentials->getCertificateKey())){
                 throw new Exception("[ERRO] Não localizei a chave do certificado no servidor!");
             }
-            echo 'Vai executar...<br>';
+
             $response = curl_exec($curl);
             var_dump(['auth' => $response]);
             echo '<br>';

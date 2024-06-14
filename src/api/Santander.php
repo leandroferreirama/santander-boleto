@@ -187,6 +187,7 @@ class Santander
             $boletoResponse->setStatus(BaseResponse::STATUS_CONFIRMED);
             return $boletoResponse;
         } catch(Exception $e){
+            var_dump(['boletoResponse' => $boletoResponse, 'exception' => $e->getMessage()]);
             return $this->generateErrorResponse($boletoResponse, $e);
         }
     }
