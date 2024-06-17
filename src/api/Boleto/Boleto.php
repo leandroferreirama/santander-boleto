@@ -33,8 +33,8 @@ class Boleto implements \JsonSerializable
         $state, $zipCode, $type, $dictKey, public string $finePercentage = '0.00', public int $fineQuantityDays = 0, public string $interestPercentage = '0.00'
     )
     {
-        $this->nsuCode = $this->bankNumberDv($bankNumber);
-        $this->bankNumber = $this->bankNumberDv($bankNumber);
+        $this->nsuCode = self::bankNumberDv($bankNumber);
+        $this->bankNumber = self::bankNumberDv($bankNumber);
         $this->nsuDate = date("Y-m-d");
         $this->issueDate = date("Y-m-d");
         $this->paymentType = 'REGISTRO';
@@ -42,7 +42,7 @@ class Boleto implements \JsonSerializable
         $this->key = new Key($type, $dictKey);
     }
 
-    private function modulo11($num, $base=9, $r=0)
+    private static function modulo11($num, $base=9, $r=0)
     {
         $soma = 0;
         $fator = 2;
