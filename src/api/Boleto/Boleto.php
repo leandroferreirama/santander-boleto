@@ -25,13 +25,15 @@ class Boleto implements \JsonSerializable
     public Payer $payer;
     public Key $key;
     public int $bankNumber;
+    public string $nsuCode;
 
     public function __construct(
-        public string $nsuCode, public string $environment, public string $covenantCode, $bankNumber, public string $clientNumber, 
+        public string $environment, public string $covenantCode, $bankNumber, public string $clientNumber, 
         public string $dueDate, public string $nominalValue, public string $documentKind, $documentType, $documentNumber, $name, $address, $neighborhood, $city, 
         $state, $zipCode, $type, $dictKey, public string $finePercentage = '0.00', public int $fineQuantityDays = 0, public string $interestPercentage = '0.00'
     )
     {
+        $this->nsuCode = $this->bankNumberDv($bankNumber);
         $this->bankNumber = $this->bankNumberDv($bankNumber);
         $this->nsuDate = date("Y-m-d");
         $this->issueDate = date("Y-m-d");
