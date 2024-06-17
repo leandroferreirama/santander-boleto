@@ -189,7 +189,7 @@ class Santander
     public function alterarVencimento($covenantCode, $bankNumber, $date): BoletoResponse
     {
         $json['covenantCode'] = $covenantCode;
-        $json['bankNumber'] = $bankNumber;
+        $json['bankNumber'] = Boleto::bankNumberDv($bankNumber);
         $json['dueDate'] = $date;
 
         return $this->update(json_encode($json));
@@ -198,7 +198,7 @@ class Santander
     public function baixar($covenantCode, $bankNumber): BoletoResponse
     {
         $json['covenantCode'] = $covenantCode;
-        $json['bankNumber'] = $bankNumber;
+        $json['bankNumber'] = Boleto::bankNumberDv($bankNumber);
         $json['operation'] = 'BAIXAR';
         
         return $this->update(json_encode($json));
@@ -207,7 +207,7 @@ class Santander
     public function prazoBaixa($covenantCode, $bankNumber, $days): BoletoResponse
     {
         $json['covenantCode'] = $covenantCode;
-        $json['bankNumber'] = $bankNumber;
+        $json['bankNumber'] = Boleto::bankNumberDv($bankNumber);
         $json['writeOffQuantityDays'] = $days;
         
         return $this->update(json_encode($json));

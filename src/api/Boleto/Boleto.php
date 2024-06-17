@@ -76,9 +76,9 @@ class Boleto implements \JsonSerializable
         }
     }
     
-    private function bankNumberDv($bankNumber)
+    public static function bankNumberDv($bankNumber)
     {
-        $resto = $this->modulo11($bankNumber, 9, 1);
+        $resto = self::modulo11($bankNumber, 9, 1);
         $digito = 11 - $resto;
         if($digito == 10 || $digito == 11){
             $digito = 0;
