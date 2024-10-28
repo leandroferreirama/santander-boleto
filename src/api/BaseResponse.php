@@ -21,7 +21,7 @@ class BaseResponse implements \JsonSerializable
     private $message;
     private $codigo;
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return get_object_vars($this);
     }

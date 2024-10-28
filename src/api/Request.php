@@ -169,6 +169,7 @@ class Request
         } catch (Exception $e) {
             throw new SantanderException("Request Exception, error: {$e->getMessage()}", 100);
         }
+        var_dump(['message_api' => $response]);
         // Verify error
         if ($response === false) {
             $errorMessage = curl_error($curl);
