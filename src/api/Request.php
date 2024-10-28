@@ -165,6 +165,7 @@ class Request
         $errorMessage = '';
 
         try {
+            echo 'Vai chamar...<br>';
             $response = curl_exec($curl);
         } catch (Exception $e) {
             throw new SantanderException("Request Exception, error: {$e->getMessage()}", 100);
